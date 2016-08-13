@@ -43,8 +43,8 @@ exports.index = function(req, res) {
   if (nlgbtcRate === 0 || currentTime >= (timestamp + delay)) {
     timestamp = currentTime;
 
-    _request('https://koopgulden.nl/api/ticker/', function(err, data) {
-      if (!err) nlgbtcRate = parseFloat(JSON.parse(data).NLG.value).toFixed(8);
+    _request('https://bittrex.com/api/v1.1/public/getticker?market=btc-nlg', function(err, data) {
+      if (!err) nlgbtcRate = parseFloat(JSON.parse(data).result.Last).toFixed(8);
 
       res.jsonp({
         status: 200,
